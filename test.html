@@ -6,7 +6,6 @@
 <title>Subject Notes</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-<link rel="stylesheet" href="../style.css">
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -42,14 +41,11 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 300px;
-    width: 500px;
+    min-width: 160px;
     z-index: 1;
   }
   .dropdown:hover .dropdown-content {
-    top: 20px;
-    display:flex;
-    gap: 10px;
+    display: block;
   }
   .accordion-header {
     cursor: pointer;
@@ -80,28 +76,17 @@
 </head>
 <body>
 
-<header class="hero is-primary">
-  <div class="hero-body">
-    <div class="container" >
-      <a href="index.html"><h1 class="title-c title" ">VIII Sem Subject wise notes</h1>
-      <a href="index.html"><h2 class="subtitle">courtesy of
-        <a href="https://chat.openai.com" target="_blank"><b>ChatGPT</b> <img src="https://1000logos.net/wp-content/uploads/2023/02/ChatGPT-Logo.png" alt="Logo" style="height: 30px;padding: 0;"></a>
-      </a>
-    </div>
-  </div>
+<header>
+  <h1 class="title">Subject Notes</h1>
 </header>
-
 
 <nav>
   <ul>
     <li class="dropdown">
       <a href="#">DRRM</a>
-      <div class="dropdown-content" >
+      <div class="dropdown-content">
         <a href="#" onclick="displayNotes('DRRM', 'Chapter 1')">Chapter 1</a>
         <a href="#" onclick="displayNotes('DRRM', 'Chapter 2')">Chapter 2</a>
-        <a href="#" onclick="displayNotes('DRRM', 'Chapter 3')">Chapter 3</a>
-        <a href="#" onclick="displayNotes('DRRM', 'Chapter 4')">Chapter 4</a>
-        <a href="#" onclick="displayNotes('DRRM', 'Chapter 5')">Chapter 5</a>
       </div>
     </li>
     <li class="dropdown">
@@ -123,7 +108,7 @@
       <div class="dropdown-content">
         <a href="#" onclick="displayNotes('Others', 'Chapter 1')">Chapter 1</a>
         <a href="#" onclick="displayNotes('Others', 'Chapter 2')">Chapter 2</a>
-        <a href="#" onclick="displayPdf('syllabus.pdf')">PDF</a>
+        <a href="#" onclick="displayPdf('path/to/pdf.pdf')">PDF</a>
       </div>
     </li>
   </ul>
@@ -131,36 +116,58 @@
 
 <div class="container">
   <div class="content" id="notes-container">
-    <div class="about-section">
-      <h2>About This Website</h2>
-      <p>This website was created by Varun Yadav with the aim of providing a centralized platform for students to access study materials. It serves as a convenient resource for students to prepare for exams and enhance their learning experience.</p>
-    </div>
-    <div class="contribute-section">
-      <h2>Contribute to the Project</h2>
-      <p>We welcome contributions from the students to improve the quality and usability of this website. You can contribute in various ways:</p>
-      <ul>
-        <li>Enhancing the content and accuracy of notes in the <code>notes.json</code> file.</li>
-        <li>Improving the design and styling of the website.</li>
-        <li>Adding new features or functionalities to enhance user experience.</li>
-      </ul>
-      <p>To contribute, please visit our <a href="https://github.com/yourusername/yourproject">GitHub repository</a>. Your contributions are highly appreciated and will benefit students worldwide.</p>
-    </div>
-    <div class="involved-section">
-      <h2>Get Involved</h2>
-      <p>For detailed instructions on how to contribute, please refer to our <a href="instructions.html">Contribution Guidelines</a>. These guidelines provide essential information on file formats, coding standards, and other important details to ensure smooth collaboration.</p>
-      <p>If you have any questions or suggestions, feel free to contact us at <a href="mailto:contact@example.com">zvarun747@gmail.com</a>.</p>
-      <p>Thank you for your support and happy learning!</p>
-    </div>
+    <p>Select a subject and chapter to display notes.</p>
   </div>
 </div>
-<script>
-  async function displayNotes(subject, chapter) {
-    const response = await fetch('notes.json');
-    const data = await response.json();
 
-    const chapterData = data[subject][chapter];
+<script>
+  function displayNotes(subject, chapter) {
     const notesContainer = document.getElementById('notes-container');
     notesContainer.innerHTML = `<h2>${subject} - ${chapter}</h2>`;
+    // Dummy data - replace with actual data retrieval logic
+    const dummyData = {
+      "DRRM": {
+        "Chapter 1": {
+          "Subheading 1": "Notes for DRRM Chapter 1 - Subheading 1",
+          "Subheading 2": "Notes for DRRM Chapter 1 - Subheading 2"
+        },
+        "Chapter 2": {
+          "Subheading 1": "Notes for DRRM Chapter 2 - Subheading 1",
+          "Subheading 2": "Notes for DRRM Chapter 2 - Subheading 2"
+        }
+      },
+      "POE": {
+        "Chapter 1": {
+          "Subheading 1": "Notes for POE Chapter 1 - Subheading 1",
+          "Subheading 2": "Notes for POE Chapter 1 - Subheading 2"
+        },
+        "Chapter 2": {
+          "Subheading 1": "Notes for POE Chapter 2 - Subheading 1",
+          "Subheading 2": "Notes for POE Chapter 2 - Subheading 2"
+        }
+      },
+      "EC": {
+        "Chapter 1": {
+          "Subheading 1": "Notes for EC Chapter 1 - Subheading 1",
+          "Subheading 2": "Notes for EC Chapter 1 - Subheading 2"
+        },
+        "Chapter 2": {
+          "Subheading 1": "Notes for EC Chapter 2 - Subheading 1",
+          "Subheading 2": "Notes for EC Chapter 2 - Subheading 2"
+        }
+      },
+      "Others": {
+        "Chapter 1": {
+          "Subheading 1": "Notes for Others Chapter 1 - Subheading 1",
+          "Subheading 2": "Notes for Others Chapter 1 - Subheading 2"
+        },
+        "Chapter 2": {
+          "Subheading 1": "Notes for Others Chapter 2 - Subheading 1",
+          "Subheading 2": "Notes for Others Chapter 2 - Subheading 2"
+        }
+      }
+    };
+    const chapterData = dummyData[subject][chapter];
     Object.keys(chapterData).forEach(subheading => {
       notesContainer.innerHTML += `
         <div class="accordion">
@@ -173,7 +180,7 @@
 
   function displayPdf(pdfPath) {
     const notesContainer = document.getElementById('notes-container');
-    notesContainer.innerHTML = `<embed src="${pdfPath}" width="100%" height="900px" type="application/pdf">`;
+    notesContainer.innerHTML = `<embed src="${pdfPath}" width="100%" height="500px" type="application/pdf">`;
   }
 
   function toggleAccordion(accordionHeader) {
@@ -182,16 +189,6 @@
     accordionContent.classList.toggle('active');
   }
 </script>
-<footer class="footer " style="background-color: #f4f4f4; padding: 20px; text-align: center; bottom: 0; position: fixed;right: 0%; left: 0%;">
-  <div class="content" style="color: #3273dc;">
-    <p>
-      CBIT Subject Notes &copy; 2024. All rights reserved.
-    </p>
-    <p>
-      Made with <i class="fas fa-heart"></i> by <a href="https://github.com/varunyadavgg"> Varun Yadav</a>
-    </p>
-  </div>
-</footer>
 
 </body>
 </html>
