@@ -164,7 +164,7 @@
 </div>
 <script>
   async function displayNotes(subject, chapter) {
-    const response = await fetch('https://varunyadav.me/notes-8/notes.json');
+    const response = await fetch('https://notes-app-node-server.onrender.com/notes');
     const data = await response.json();
 
     const chapterData = data[subject][chapter];
